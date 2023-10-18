@@ -1,6 +1,6 @@
 package org.java.app.mvc.auth.config;
 
-import org.java.app.mvc.auth.service.UserService;
+import org.java.app.mvc.auth.serv.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
