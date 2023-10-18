@@ -1,4 +1,4 @@
-package org.java.app.mvc.auth.service;
+package org.java.app.mvc.auth.serv;
 
 import java.util.List;
 
