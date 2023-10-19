@@ -18,8 +18,61 @@
 </head>
 
 <header th:fragment="header">
+	<div class="d-flex justify-content-between align-items-center px-4 h-100">
 	
+		<div class="left d-flex align-items-center">
+			<img alt="Logo" th:src="@{/imgs/logo-11.png}" class="logo me-1">
+			<h4 class="logo-txt mb-0 fw-bold">Foto<span>Album</span></h4>
+		</div>
+		
+		<div class="right">
+		
+			<div sec:authorize="hasAnyAuthority('user', 'admin')" class="d-flex align-items-center">
+				<a href="/photos" class="account d-flex align-items-center fw-semibold">
+					<i class="fa-solid fa-circle-user me-2 fs-4"></i>
+					<span sec:authentication="name" class="me-4"></span>
+				</a>
+				
+				<a href="/logout" class="btn btn-log d-flex align-items-center fw-semibold">
+		            <i class="fa-solid fa-right-from-bracket me-2 fs-6"></i>
+		            <span class="me-1">Logout</span>
+		         </a>
+			</div>
+			
+			<div sec:authorize="!hasAnyAuthority('user', 'admin')">
+				<a href="/login" class="btn btn-log d-flex align-items-center fw-semibold">
+		            <i class="fa-solid fa-circle-user me-2 fs-6"></i>
+		            <span class="me-1">Login</span>
+		         </a>
+			</div>
+			
+		</div>
+		
+	</div>
 </header>
+
+<aside th:fragment="aside">
+	<ul class="list-unstyled">
+      <li>
+        <a class="fw-semibold">
+          <i class="fa-solid fa-images me-2"></i>
+          <span class="aside-link-text">Photos</span>
+        </a>
+      </li>
+      <li>
+        <a class="fw-semibold">
+          <i class="fa-solid fa-folder-tree me-2"></i>
+          <span class="aside-link-text">Categories</span>
+        </a>
+      </li>
+      <li>
+        <a class="fw-semibold">
+          <i class="fa-solid fa-envelope me-2"></i>
+          <span class="aside-link-text">Messages</span>
+        </a>
+      </li>
+    </ul>
+</aside>
 
 <footer th:fragment="footer">
 	

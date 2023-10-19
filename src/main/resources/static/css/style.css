@@ -1,1 +1,101 @@
 @charset "ISO-8859-1";
+
+/* Variables */
+:root {
+	--gray: #626262;
+  	--dark-gray: #575756;
+  	--dark-white: #ebebeb;
+  	--coral: #ff7f50;
+}
+
+/* General */
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+/* Header */
+header {
+	position: fixed;
+  	top: 0;
+  	left: 0;
+  	right: 0;
+  	z-index: 999;
+  	height: 70px;
+  	background-color: var(--dark-white);
+  	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
+}
+
+.left {
+	height: 100%
+}
+
+.left .logo {
+	max-width: 50px;
+}
+
+.left .logo-txt {
+	color: var(--dark-gray)
+}
+
+.left .logo-txt span {
+	color: var(--coral);
+}
+
+.right .btn-log {
+	background-color: var(--dark-gray);
+	font-size: 0.9rem;
+	color: var(--dark-white);
+}
+
+.right .btn-log:hover {
+	background-color: var(--coral);
+}
+
+.right .account {
+	color: var(--dark-gray);
+}
+
+.right .account:hover {
+	color: var(--coral);
+}
+
+/* Main */
+.main-wrapper {
+  	height: calc(100vh - 70px);
+  	width: 100%;
+  	background-color: var(--dark-white);
+  	margin-top: 70px;
+}
+
+/* aside */
+aside {
+	height: 100%;
+ 	min-width: 280px;
+  	background-color: var(--dark-gray);
+}
+
+aside li a {
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      color: white;
+      font-size: 1rem;
+      border-left: 5px solid transparent;
+      padding: 15px;
+      transition: all 0.3s;
+}
+
+aside li a:hover {
+	  border-left: 5px solid var(--coral);
+      background-color: var(--gray);
+}
+
+
+
+
+
+

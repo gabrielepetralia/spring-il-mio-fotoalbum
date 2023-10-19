@@ -4,6 +4,17 @@
 	<th:block th:replace="~{frags :: head}" />
 </head>
 <body>
-	<h1>FotoAlbum</h1>
+	<header th:replace="~{frags :: header}"></header>
+	
+	<main>
+		<div class="main-wrapper d-flex">
+			<th:block th:replace="~{frags :: aside}" />
+			
+			<div class="right-window overflow-auto">
+			
+			</div>
+		</div>
+	</main>
+	
 </body>
 </html>
