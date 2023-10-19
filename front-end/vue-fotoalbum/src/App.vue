@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-  <h1>Fotoalbum</h1>
+  <h1>FotoAlbum</h1>
   <i class="fa-solid fa-house"></i>
 </template>
 

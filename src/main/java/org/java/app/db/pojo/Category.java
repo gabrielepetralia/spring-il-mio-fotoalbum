@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Category {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,7 +32,7 @@ public class Category {
 	public Category() {};
 	
 	public Category(String name, Photo...photos) {
-		setName("name");
+		setName(name);
 		setPhotos(Arrays.asList(photos));
 	}
 

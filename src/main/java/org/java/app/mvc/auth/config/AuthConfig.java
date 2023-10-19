@@ -18,8 +18,11 @@ public class AuthConfig {
 			 
 			http.csrf().disable()
 				.authorizeHttpRequests()
+				.requestMatchers("/api/**").permitAll()
+				.requestMatchers("/photos/**").hasAuthority("admin")
+				.requestMatchers("/messages/**").hasAuthority("admin")
 		        .requestMatchers("/**").permitAll()
-		        .and().formLogin().defaultSuccessUrl("/")
+		        .and().formLogin().defaultSuccessUrl("/photos")
 		        .and().logout();
 			
 			return http.build();

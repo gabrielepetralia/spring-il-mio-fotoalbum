@@ -18,6 +18,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Photo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -43,10 +44,11 @@ public class Photo {
 	private List<Category> categories;
 	
 	public Photo() {};
+	
 	public Photo(String title, String description, String url, Boolean visible, Category...categories) {
-		setTitle("title");
-		setDescription("description");
-		setUrl("url");
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
 		setVisible(visible);
 		setCategories(Arrays.asList(categories));
 	}

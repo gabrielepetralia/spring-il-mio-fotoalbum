@@ -1,6 +1,7 @@
 package org.java.app.db.pojo;
 
 import org.hibernate.validator.constraints.Length;
+import org.java.app.api.dto.MessageDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Message {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -19,16 +21,22 @@ public class Message {
 	@Column(nullable = false)
 	@Email(message = "Inserire un indirizzo email valido")
 	@NotBlank(message = "Inserire l'indirizzo email")
-	@Length(max = 255, message = "Il nome deve avere un minimo di 3 e un massimo di 30 caratteri")
+	@Length(max = 255, message = "L'email deve avere un massimo di 255 caratteri")
 	private String email;
 	
 	@NotBlank(message = "Inserire un messaggio")
 	@Length(max = 255, message = "La descrizione deve avere un massimo di 255 caratteri")
 	private String msgText;
 	
+	public Message() {};
+	
 	public Message(String email, String msgText) {
-		setEmail("email");
-		setMsgText("msgText");
+		setEmail(email);
+		setMsgText(msgText);
+	}
+	
+	public Message(MessageDTO messageDTO) {
+		fillFromDTO(messageDTO);
 	}
 
 	public int getId() {
@@ -53,6 +61,11 @@ public class Message {
 	
 	public void setMsgText(String msgText) {
 		this.msgText = msgText;
+	}
+	
+	public void fillFromDTO(MessageDTO messageDTO) {
+		setEmail(messageDTO.getEmail());
+		setMsgText(messageDTO.getMsgText());
 	}
 	
 }
