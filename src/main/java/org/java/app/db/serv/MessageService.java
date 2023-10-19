@@ -26,6 +26,10 @@ public class MessageService {
 		return messageRepo.findById(id);
 	}
 	
+	public List<Message> findByEmail(String email) {
+		return messageRepo.findByEmailContaining(email);
+	}
+	
 	public void delete(Message message) {
 		messageRepo.delete(message);
 	}

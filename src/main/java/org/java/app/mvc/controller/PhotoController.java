@@ -41,7 +41,7 @@ public class PhotoController {
 					: photoService.findByTitle(title);
 		
 		model.addAttribute("photos", photos);
-		model.addAttribute("name", title);
+		model.addAttribute("title", title); // togliere (?)
 		
 		return "photo-index";
 	}
@@ -154,4 +154,5 @@ public class PhotoController {
 
 		return "redirect:/photos";
 	}
+	
 }
