@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/photos/categories")
+@RequestMapping("/api/categories")
 public class CategoryApiController {
 
 	@Autowired

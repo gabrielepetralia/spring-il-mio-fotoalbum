@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/messages")
 public class MessageController {
@@ -24,14 +26,16 @@ public class MessageController {
 	
 	// Index
 	@GetMapping
-	public String getIndex(Model model, @RequestParam(required = false) String email) {
+	public String getIndex(HttpServletRequest request, Model model, @RequestParam(required = false) String email) {
+		String servletPath = request.getServletPath();
 		
 		List<Message> messages = email == null 
 					? messageService.findAll()
 					: messageService.findByEmail(email);
 		
 		model.addAttribute("messages", messages);
-		model.addAttribute("email", email); // togliere (?)
+		model.addAttribute("email", email);
+		model.addAttribute("servletPath", servletPath);
 		
 		return "message-index";
 	}

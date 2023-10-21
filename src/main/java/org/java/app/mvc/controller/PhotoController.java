@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
@@ -34,39 +35,43 @@ public class PhotoController {
 	
 	// Index
 	@GetMapping
-	public String getIndex(Model model, @RequestParam(required = false) String title) {
+	public String getIndex(HttpServletRequest request, Model model, @RequestParam(required = false) String title) {
+		String servletPath = request.getServletPath();
 		
 		List<Photo> photos = title == null 
 					? photoService.findAll()
 					: photoService.findByTitle(title);
 		
 		model.addAttribute("photos", photos);
-		model.addAttribute("title", title); // togliere (?)
+		model.addAttribute("title", title);
+		model.addAttribute("servletPath", servletPath);
 		
 		return "photo-index";
 	}
 	
 	// Show
-	@GetMapping("/{id}")
-	public String getShow(@PathVariable int id, Model model) {
-		
-		Optional<Photo> photo = photoService.findById(id);
-		
-		if (photo.isEmpty()) return "photo-index";
-
-		model.addAttribute("photo", photo);
-		
-		return "photo-show";
-	}
+//	@GetMapping("/{id}")
+//	public String getShow(@PathVariable int id, Model model) {
+//		
+//		Optional<Photo> photo = photoService.findById(id);
+//		
+//		if (photo.isEmpty()) return "photo-index";
+//
+//		model.addAttribute("photo", photo);
+//		
+//		return "photo-show";
+//	}
 	
 	// Create
 	@GetMapping("/create")
-	public String getCreateForm(Model model) {
-		
+	public String getCreateForm(HttpServletRequest request, Model model) {
+		String servletPath = request.getServletPath();
+			
 		List<Category> categories = categoryService.findAll();
 		
 		model.addAttribute("photo", new Photo());
 		model.addAttribute("categories", categories);
+		model.addAttribute("servletPath", servletPath);
 		
 		return "photo-create-edit";
 	}
@@ -84,15 +89,18 @@ public class PhotoController {
 	// Edit
 	@GetMapping("/edit/{id}")
 	public String getEditForm(
+			HttpServletRequest request,
 			@PathVariable int id,
 			Model model
 		) {
+		String servletPath = request.getServletPath();
 		
 		List<Category> categories = categoryService.findAll();
 		Photo photo = photoService.findById(id).get();
 		
 		model.addAttribute("photo", photo);
 		model.addAttribute("categories", categories);
+		model.addAttribute("servletPath", servletPath);
 		
 		return "photo-create-edit";
 	}

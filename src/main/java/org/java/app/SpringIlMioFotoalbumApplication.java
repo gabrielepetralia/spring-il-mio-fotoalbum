@@ -64,7 +64,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 				"Delizie in Bianco e Nero",
 				"Un assortimento di deliziosi dolcetti, catturati in uno sfondo in bianco e nero che enfatizza la texture e la tentazione. Ogni morso è un'esplosione di sapore, mentre la fotografia trasmette il desiderio di indulgere.",
 				"https://c.wallhere.com/photos/a8/3e/blackandwhite_bw_food_film_35mm_dessert_cupcakes_etc-716643.jpg!d",
-				true,
+				false,
 				cat1, cat8
 			);
 		
@@ -104,7 +104,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 				"Tranquillità Grigia",
 				"Un paesaggio marino in bianco e nero, in cui le nuvole grigie si riflettono sull'acqua calma del mare. Un'atmosfera di serenità e mistero avvolge questa immagine, trasportando l'osservatore in un momento di quiete e contemplazione.",
 				"https://c.wallhere.com/photos/6b/17/photography_monochrome_landscape_nature_water_stones_coast_Rangitoto-77637.jpg!d",
-				true,
+				false,
 				cat1, cat2, cat3
 			);
 		
@@ -152,7 +152,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 				"Sotto il Regno dei Coralli",
 				"Un'immersione nella vita sottomarina, in cui pesci rossi nuotano tra i vibranti coralli. Il mondo sottomarino si apre davanti agli occhi dell'osservatore, rivelando la bellezza e la diversità della vita marina.",
 				"https://c.wallhere.com/photos/59/a2/1920x1200_px_Coral_egypt_fishes_ocean_sea_tropical_underwater-1651151.jpg!d",
-				true,
+				false,
 				cat3, cat6
 			);
 		
@@ -194,7 +194,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		userService.save(guybrushAdmin);
 		userService.save(guybrushUser);
 		
-		System.out.println("Insert OK!");
+		System.out.println("Insert done!");
 		
 	}
 

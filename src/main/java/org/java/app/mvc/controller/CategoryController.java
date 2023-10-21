@@ -18,10 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/photos/categories")
+@RequestMapping("/categories")
 public class CategoryController {
 	
 	@Autowired
@@ -33,11 +34,13 @@ public class CategoryController {
 	
 	// Index
 	@GetMapping
-	public String getIndex(Model model) {
+	public String getIndex(HttpServletRequest request, Model model) {
+		String servletPath = request.getServletPath();
 		
 		List<Category> categories = categoryService.findAll();
 		
 		model.addAttribute("categories", categories);
+		model.addAttribute("servletPath", servletPath);
 		
 		return "category-index";
 	}
@@ -80,7 +83,7 @@ public class CategoryController {
 			return "category-create";
 		}
 
-		return "redirect:/photos/categories";
+		return "redirect:/categories";
 	}
 	
 	// Delete
@@ -100,7 +103,7 @@ public class CategoryController {
 		
 		categoryService.delete(category);
 		
-		return "redirect:/photos/categories";
+		return "redirect:/categories";
 	}
 	
 }

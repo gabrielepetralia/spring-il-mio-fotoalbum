@@ -27,24 +27,24 @@
 		
 		<div class="right">
 		
-			<div sec:authorize="hasAnyAuthority('user', 'admin')" class="d-flex align-items-center">
+			<div sec:authorize="hasAnyAuthority('user', 'admin')" class="d-flex align-items-center" title="Account">
 				<a href="/photos" class="account d-flex align-items-center fw-semibold">
 					<i class="fa-solid fa-circle-user me-2 fs-4"></i>
 					<span sec:authentication="name" class="me-4"></span>
 				</a>
 				
-				<a href="/logout" class="btn btn-log d-flex align-items-center fw-semibold">
-		            <i class="fa-solid fa-right-from-bracket me-2 fs-6"></i>
-		            <span class="me-1">Logout</span>
+				<a href="/logout" class="btn gp-btn d-flex align-items-center" title="Logout">
+		            <i class="fa-solid fa-right-from-bracket fs-6"></i>
+		            <span class="ms-2 d-none d-md-block">Logout</span>
 		         </a>
 			</div>
 			
-			<div sec:authorize="!hasAnyAuthority('user', 'admin')">
-				<a href="/login" class="btn btn-log d-flex align-items-center fw-semibold">
-		            <i class="fa-solid fa-circle-user me-2 fs-6"></i>
-		            <span class="me-1">Login</span>
-		         </a>
-			</div>
+<!-- 			<div sec:authorize="!hasAnyAuthority('user', 'admin')"> -->
+<!-- 				<a href="/login" class="btn gp-btn d-flex align-items-center" title="Login"> -->
+<!-- 		            <i class="fa-solid fa-circle-user fs-6"></i> -->
+<!-- 		            <span class="ms-2 d-none d-md-block">Login</span> -->
+<!-- 		         </a> -->
+<!-- 			</div> -->
 			
 		</div>
 		
@@ -54,21 +54,21 @@
 <aside th:fragment="aside">
 	<ul class="list-unstyled">
       <li>
-        <a class="fw-semibold">
+        <a href="/photos" class="fw-semibold" th:classappend="${servletPath.startsWith('/photos') ? 'active-route' : ''}">
           <i class="fa-solid fa-images me-2"></i>
-          <span class="aside-link-text">Photos</span>
+          <span class="aside-link-text d-none d-lg-block">Photos</span>
         </a>
       </li>
       <li>
-        <a class="fw-semibold">
+        <a href="/categories" class="fw-semibold" th:classappend="${servletPath.startsWith('/categories') ? 'active-route' : ''}">
           <i class="fa-solid fa-folder-tree me-2"></i>
-          <span class="aside-link-text">Categories</span>
+          <span class="aside-link-text d-none d-lg-block">Categories</span>
         </a>
       </li>
       <li>
-        <a class="fw-semibold">
+        <a href="/messages" class="fw-semibold" th:classappend="${servletPath.startsWith('/messages') ? 'active-route' : ''}">
           <i class="fa-solid fa-envelope me-2"></i>
-          <span class="aside-link-text">Messages</span>
+          <span class="aside-link-text d-none d-lg-block">Messages</span>
         </a>
       </li>
     </ul>

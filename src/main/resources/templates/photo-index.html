@@ -10,8 +10,71 @@
 		<div class="main-wrapper d-flex">
 			<th:block th:replace="~{frags :: aside}" />
 			
-			<div class="right-window overflow-auto">
-			
+			<div class="right-window overflow-auto p-3 p-lg-5 w-100">
+				
+					<div class="d-flex justify-content-between mb-2 px-3">
+						<div class="me-3 w-100">
+							<form>
+								<div class="input-group search-photo">
+								  	<input type="text" class="form-control shadow-none border-none" placeholder="Cerca una foto" name="title" th:value="${title}">
+								  	<button class="btn gp-btn" type="submit" title="Cerca"><i class="fa-solid fa-magnifying-glass"></i></button>
+								</div>
+							</form>
+						</div>
+						
+						<div>
+							<a href="/photos/create" class="btn gp-btn h-100 d-flex align-items-center" title="Aggiungi foto">
+								<i class="fa-solid fa-plus"></i>
+							</a>
+						</div>
+					</div>
+				
+					<div th:if="${photos.size()> 0}" class="row row-cols-1 row-cols-xl-2">
+						<div th:each="photo : ${photos}" th:object="${photo}" class="col my-4 px-4">
+							<div class="photo-img text-decoration-none">
+								<img th:src="*{url}" onerror="this.src='/imgs/noimage.png'">
+								
+								<div class="photo-overlay overflow-auto text-white p-5"> 
+							  		<h3 class="mb-3 photo-title">[[*{title}]]</h3>
+							  		<p class="mb-4">[[*{description}]]</p>
+							  		
+							  		<ul class="list-unstyled d-flex flex-column flex-md-row mb-4">
+							  			<li th:each="category : *{categories}" th:object="${category}" class="me-2 mb-2">
+							  				<span class="gp-badge">[[*{name}]]</span>
+							  			</li>
+							  		</ul>
+							  		
+							  		<div th:if="*{visible}" class="gp-badge gp-badge-green">
+							  			<span class="me-1">Visibile</span>
+							  			<i class="fa-solid fa-eye"></i>
+							  		</div>
+							  		<div th:unless="*{visible}" class="gp-badge gp-badge-red">
+							  			<span class="me-1">Non visibile</span>
+							  			<i class="fa-solid fa-eye-slash"></i>
+							  		</div>
+							  		
+							  		<div class="mt-2 d-flex justify-content-end photo-overlay-btns">
+										<a th:href="@{/photos/edit/{id}(id=*{id})}" class="edit btn gp-btn me-2" title="Modifica foto">
+											<i class="fa-solid fa-pen-to-square"></i>
+										</a>
+										<form 
+											th:action="@{/photos/delete/{id}(id=*{id})}" 
+											method="POST"
+											style="display: inline;"
+										>
+									 	 	<button type="submit" class="btn gp-btn gp-btn-red" title="Elimina foto"><i class="fa-solid fa-trash-can"></i></button>
+										</form>
+									</div>
+							  	</div>
+							  	
+							</div>
+						</div>
+					</div>
+					
+					<div th:unless="${photos.size()> 0}" class="text-center mt-5 pt-5">
+						<h2 class="text-coral">Non ci sono foto!</h2>
+					</div>
+				
 			</div>
 		</div>
 	</main>
