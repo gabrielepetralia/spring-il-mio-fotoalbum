@@ -1,5 +1,6 @@
 package org.java.app.mvc.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,8 @@ public class PhotoController {
 					? photoService.findAll()
 					: photoService.findByTitle(title);
 		
+		Collections.reverse(photos);
+		
 		model.addAttribute("photos", photos);
 		model.addAttribute("title", title);
 		model.addAttribute("servletPath", servletPath);
@@ -80,10 +83,11 @@ public class PhotoController {
 	public String storePhoto(
 			@Valid @ModelAttribute Photo photo,
 			BindingResult bindingResult,
-			Model model
+			Model model,
+			HttpServletRequest request
 			) {
 
-		return savePhoto(photo, bindingResult, model);
+		return savePhoto(photo, bindingResult, model, request);
 	}
 	
 	// Edit
@@ -109,10 +113,11 @@ public class PhotoController {
 	public String updatePhoto(
 			@Valid @ModelAttribute Photo photo,
 			BindingResult bindingResult,
-			Model model
+			Model model,
+			HttpServletRequest request
 			) {
 
-		return savePhoto(photo, bindingResult, model);
+		return savePhoto(photo, bindingResult, model, request);
 	}
 	
 	// Delete
@@ -135,8 +140,15 @@ public class PhotoController {
 	private String savePhoto(
 			Photo photo,
 			BindingResult bindingResult,
-			Model model
+			Model model,
+			HttpServletRequest request
 		) {
+		
+		String servletPath = request.getServletPath();
+		model.addAttribute("servletPath", servletPath);
+		
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
 
 		if (bindingResult.hasErrors()) {
 
