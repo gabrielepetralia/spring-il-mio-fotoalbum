@@ -11,6 +11,8 @@
 			<th:block th:replace="~{frags :: aside}" />
 			
 			<div class="right-window overflow-auto py-5 px-3 py-lg-5 px-lg-5 w-100">
+			
+					<h2 class="text-coral ms-2 mb-4">Photos</h2>
 				
 					<div class="d-flex justify-content-between mb-2 px-3">
 						<div class="me-3 w-100">
@@ -23,7 +25,7 @@
 						</div>
 						
 						<div>
-							<a href="/photos/create" class="btn gp-btn h-100 d-flex align-items-center" title="Aggiungi foto">
+							<a href="/photos/create" class="btn gp-btn gp-add-btn d-flex align-items-center" title="Aggiungi foto">
 								<i class="fa-solid fa-plus"></i>
 							</a>
 						</div>
@@ -72,7 +74,7 @@
 					</div>
 					
 					<div th:unless="${photos.size()> 0}" class="text-center mt-5 pt-5">
-						<h2 class="text-coral">Non ci sono foto!</h2>
+						<h2 class="text-dark-gray">Non sono presenti foto !</h2>
 					</div>
 				
 			</div>

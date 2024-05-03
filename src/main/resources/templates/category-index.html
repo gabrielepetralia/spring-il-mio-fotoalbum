@@ -6,14 +6,83 @@
 <body>
 	<header th:replace="~{frags :: header}"></header>
 	
-	<div class="main-wrapper d-flex">
-		<th:block th:replace="~{frags :: aside}" />
-		
-		<div class="right-window overflow-auto p-3 p-lg-5 w-100">
-		
-		
+	<main>
+		<div class="main-wrapper d-flex">
+			<th:block th:replace="~{frags :: aside}" />
 			
+			<div class="right-window overflow-auto py-4 px-3 py-lg-5 px-lg-5 w-100">
+				
+				<h2 class="text-coral ms-2 mb-4">Categories</h2>
+				
+				<div th:if="${categories.size()> 0}" class="d-flex flex-wrap">
+					<ul class="list-unstyled d-flex flex-wrap mb-0">
+						<li th:each="category : ${categories}" th:object="${category}" class="gp-cat-badge me-3 d-flex align-items-center mb-3">
+							<span>[[*{name}]]</span>
+							<form 
+								th:action="@{/categories/delete/{id}(id=*{id})}" 
+								method="POST"
+								style="display: inline;"
+							>
+						 	 	<button type="submit" class="gp-btn gp-btn-transparent text-red" title="Elimina categoria"><i class="fa-solid fa-trash-can"></i></button>
+							</form>
+						</li>
+							
+						<li>
+							<button 
+								type="button" 
+								data-bs-toggle="modal" 
+								data-bs-target="#addCategory"  
+								class="btn gp-btn gp-add-btn d-flex align-items-center" 
+								title="Aggiungi categoria"
+							>
+								<i class="fa-solid fa-plus"></i>
+							</button>
+						</li>
+					</ul>
+				</div>
+				
+				<div th:unless="${categories.size()> 0}" class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-5 pt-5">
+					<h2 class="text-dark-gray me-3 text-center mb-4 mb-md-0">Non sono presenti categorie !</h2>
+					<button 
+						type="button" 
+						data-bs-toggle="modal" 
+						data-bs-target="#addCategory"  
+						class="btn gp-btn gp-add-btn d-flex align-items-center" 
+						title="Aggiungi categoria"
+					>
+						<i class="fa-solid fa-plus"></i>
+					</button>
+				</div>
+				
+			</div>
 		</div>
-	</div>
+		
+		<div class="modal fade" id="addCategory" tabindex="-1" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content border border-0">
+			    	<form th:action="@{/categories/create}" th:object="${category}" method="POST">
+			      <div class="modal-header bg-coral text-white">
+			        <h1 class="modal-title fs-5">Aggiungi categoria</h1>
+			        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <div class="mb-3">
+					  	<label for="name" class="form-label">Nome <span class="text-coral fw-bold">*</span></label>
+				  		<input type="text" class="form-control gp-input-text" id="name" name="name" th:field="*{name}" placeholder="Nome della categoria">
+				 		<div th:if="${#fields.hasErrors('name')}">
+							<ul class="mt-2">
+						   		<li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="fw-normal text-danger"></li>
+							</ul>
+						</div>
+					</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn gp-btn" title="Salva categoria"><i class="fa-solid fa-floppy-disk"></i></button>
+			      </div>
+			      </form>
+			    </div>
+		  </div>
+		</div>
+	</main>
 </body>
 </html>

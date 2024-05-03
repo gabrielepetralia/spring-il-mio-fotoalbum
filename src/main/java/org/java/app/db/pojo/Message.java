@@ -27,6 +27,8 @@ public class Message {
 	@NotBlank(message = "Inserire un messaggio")
 	@Length(max = 255, message = "La descrizione deve avere un massimo di 255 caratteri")
 	private String msgText;
+
+	private Boolean isRead = false;
 	
 	public Message() {};
 	
@@ -61,6 +63,14 @@ public class Message {
 	
 	public void setMsgText(String msgText) {
 		this.msgText = msgText;
+	}
+	
+	public Boolean getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
 	}
 	
 	public void fillFromDTO(MessageDTO messageDTO) {

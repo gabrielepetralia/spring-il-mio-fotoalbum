@@ -30,12 +30,12 @@ a:hover {
 	white-space: nowrap;
 }
 
-.gp-badge-green {
+.gp-badge.gp-badge-green {
 	color: white;
 	background-color: var(--green);
 }
 
-.gp-badge-red {
+.gp-badge.gp-badge-red {
 	color: white;
 	background-color: var(--red);
 }
@@ -47,13 +47,28 @@ a:hover {
 	transition: all 0.3s !important;
 }
 
-.gp-btn-red {
+.gp-btn.gp-btn-red {
 	background-color: var(--red);
+}
+
+.gp-btn.gp-btn-transparent {
+	border: none;
+	background-color: transparent;
 }
 
 .gp-btn:hover {
 	color: white;
 	background-color: var(--coral);
+}
+
+.gp-btn.gp-btn-transparent:hover {
+	color: var(--coral);
+	background-color: transparent;
+}
+
+.gp-btn.gp-add-btn {
+	height: 38px;
+	width: 38px;
 }
 
 .gp-form {
@@ -72,12 +87,36 @@ a:hover {
 	box-shadow: none;
 }
 
+.gp-cat-badge {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--dark-gray);
+	background-color: var(--dark-white);
+	padding: 5px 16px;
+	border-radius: 10px;
+	width: fit-content;
+	white-space: nowrap;
+	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15);
+}
+
 .text-coral {
 	color: var(--coral);
 }
 
 .text-dark-gray {
 	color: var(--dark-gray);
+}
+
+.text-red {
+	color: var(--red);
+}
+
+.bg-coral {
+	background-color: var(--coral);
+}
+
+.bg-dark-gray {
+	background-color: var(--dark-gray);
 }
 
 /* Header */

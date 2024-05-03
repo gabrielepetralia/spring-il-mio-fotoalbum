@@ -42,17 +42,20 @@ public class CategoryController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("servletPath", servletPath);
 		
+		// create
+		model.addAttribute("category", new Category());
+		
 		return "category-index";
 	}
 	
 	// Create
-	@GetMapping("/create")
-	public String getCreateForm(Model model) {
-		
-		model.addAttribute("category", new Category());
-		
-		return "category-create";
-	}
+//	@GetMapping("/create")
+//	public String getCreateForm(Model model) {
+//		
+//		model.addAttribute("category", new Category());
+//		
+//		return "category-create";
+//	}
 	
 	@PostMapping("/create")
 	public String storeCategory(
